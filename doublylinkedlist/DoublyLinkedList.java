@@ -15,7 +15,7 @@ public class DoublyLinkedList {
 		}
 	}
 
-	public void addNode(int data) { // O(1)
+	public void addTail(int data) { // O(1)
 		Node newNode = new Node(data);
 
 		if (head == null) {
@@ -29,6 +29,37 @@ public class DoublyLinkedList {
 			newNode.next = null;
 			tail = newNode;
 		}
+	}
+
+	public void setNode(int posData, int data) { // O(n) -> worst case
+		Node newNode = new Node(data);
+
+		if (posData == head.data)
+			addHead(data);
+		else {
+			Node pointer = head;
+
+			while (pointer.data != posData) {
+				pointer = pointer.next;
+			}
+
+			newNode.prev = pointer.prev;
+			newNode.next = pointer;
+			newNode.data = data;
+			Node prev = pointer.prev;
+			prev.next = newNode;
+			pointer.prev = newNode;
+		}
+	}
+
+	public void addHead(int data) { // O(1)
+		Node newNode = new Node(data);
+
+		newNode.prev = null;
+		newNode.next = head;
+		newNode.data = data;
+		head.prev = newNode;
+		head = newNode;
 	}
 
 	public void traverseForward() { // O(n)
@@ -46,7 +77,19 @@ public class DoublyLinkedList {
 	}
 
 	public boolean isEmpty() {
-		return head == null;
+		return head == null && tail == null;
+	}
+
+	public int size() {
+		Node pointer = head;
+		int size = 0;
+
+		while (pointer != tail) {
+			size++;
+			pointer = pointer.next;
+		}
+
+		return ++size;
 	}
 
 	public void removeHead() { // O(1)
@@ -56,6 +99,7 @@ public class DoublyLinkedList {
 			head = head.next;
 			System.gc();
 		}
+		System.gc();
 	}
 
 	public void removeTail() { // O(1)
@@ -65,6 +109,20 @@ public class DoublyLinkedList {
 			tail.prev.next = null;
 			tail = tail.prev;
 		}
+		System.gc();
+	}
+
+	public void clear() { // O(n)
+		Node pointer = head;
+
+		while (pointer != null) {
+			Node next = pointer.next;
+			pointer.prev = pointer.next = null;
+			pointer.data = 0;
+			pointer = next;
+		}
+		head = tail = null;
+		System.gc();
 	}
 
 	public void removeNode(int data) { // O(n) -> worst case
@@ -85,7 +143,23 @@ public class DoublyLinkedList {
 			Node suffNode = pointer.next;
 			prevNode.next = suffNode;
 			suffNode.prev = prevNode;
+			System.gc();
 		}
+	}
+
+	public boolean search(int data) { // O(n) -> worst case
+		Node pointer = head;
+
+		if (isEmpty())
+			return false;
+		while (pointer != tail) {
+			if ((pointer.data == data) || (tail.data == data))
+				return true;
+
+			pointer = pointer.next;
+		}
+
+		return false;
 	}
 
 	public void traverseBackward() {

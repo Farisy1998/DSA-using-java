@@ -5,18 +5,24 @@ public class Test {
 	public static void main(String[] args) {
 		LinkedList list = new LinkedList();
 
-		list.addNode(10);
-		list.addNode(20);
-		list.addNode(30);
-		list.addNode(40);
-		list.addNode(50);
+		list.addTail(10);
+		list.addTail(20);
+		list.addTail(30);
+		list.addTail(40);
+		list.addTail(50);
 		list.traverse();
 		list.removeTail();
 		list.traverse();
 		list.removeNode(20);
 		list.traverse();
-		list.emptyList();
-		System.out.println(list.isEmpty());
+		list.addHead(5);
+		list.addTail(60);
+		list.traverse();
+		list.setNode(30, 20);
+		list.traverse();
+		list.setNode(60, 50);
+		list.traverse();
+		System.out.println(list.search(61));
 	}
 
 }

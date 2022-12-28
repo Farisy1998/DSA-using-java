@@ -15,15 +15,42 @@ public class LinkedList {
 		}
 	}
 
-	public void addNode(int data) { // O(1)
+	public void addTail(int data) { // O(1)
 		Node newNode = new Node(data);
 
-		if (head == null) {
+		if (isEmpty()) {
 			head = newNode;
 			tail = newNode;
 		} else {
 			tail.next = newNode;
 			tail = newNode;
+		}
+	}
+
+	public void addHead(int data) { // O(1)
+		if (isEmpty())
+			addTail(data);
+		else {
+			Node newNode = new Node(data);
+			newNode.next = head;
+			newNode.data = data;
+			head = newNode;
+		}
+	}
+
+	public void setNode(int posData, int data) { // O(n) -> worst case
+		Node newNode = new Node(data);
+		Node pointer = head;
+
+		if (isEmpty() || head == tail)
+			addHead(data);
+		else {
+			while (pointer.next.data != posData) {
+				pointer = pointer.next;
+			}
+
+			newNode.next = pointer.next;
+			pointer.next = newNode;
 		}
 	}
 
@@ -40,11 +67,21 @@ public class LinkedList {
 			System.out.print("|" + tail.data + "|");
 			System.out.println(" -> " + tail.next);
 		}
-		System.out.println();
 	}
 
 	public boolean isEmpty() {
-		return head == null;
+		return head == null && tail == null;
+	}
+
+	public int size() {
+		Node pointer = head;
+		int size = 0;
+
+		while (pointer != tail) {
+			size++;
+			pointer = pointer.next;
+		}
+		return ++size;
 	}
 
 	public void removeTail() { // O(n) -> worst case
@@ -61,6 +98,7 @@ public class LinkedList {
 
 			tail = pointer;
 			tail.next = null;
+			System.gc();
 		}
 	}
 
@@ -69,6 +107,7 @@ public class LinkedList {
 			System.out.println("List is empty");
 		else {
 			head = head.next;
+			System.gc();
 		}
 	}
 
@@ -90,11 +129,41 @@ public class LinkedList {
 			Node prevNode = pointer;
 			Node rmNode = prevNode.next;
 			prevNode.next = rmNode.next;
+			System.gc();
 		}
 	}
 
-	public void emptyList() {
-		head = null;
-		tail = null;
+	public boolean search(int data) { // O(n) -> worst case
+		Node pointer = head;
+
+		if(isEmpty())
+			return false;
+		while (pointer != tail) {
+			if ((pointer.data == data) || (tail.data == data))
+				return true;
+			
+			pointer = pointer.next;
+		}
+
+		return false;
+	}
+
+	public void clear() { // O(n)
+		Node pointer = head;
+
+		if (isEmpty())
+			System.out.println("List is empty.");
+		else {
+			while (pointer != tail) {
+				Node next = pointer.next;
+
+				pointer.next = null;
+				pointer.data = 0;
+				pointer = next;
+			}
+			tail.data = 0;
+			head = tail = null;
+			System.gc();
+		}
 	}
 }
