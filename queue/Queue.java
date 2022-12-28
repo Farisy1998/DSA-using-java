@@ -16,7 +16,7 @@ public class Queue {
 		arr = new int[capacity];
 	}
 
-	public void enqueue(int data) {
+	public void enqueue(int data) { // O(1)
 		if (isEmpty()) {
 			arr[++front] = data;
 			rear++;
@@ -27,7 +27,7 @@ public class Queue {
 		}
 	}
 
-	public int dequeue() {
+	public int dequeue() { // O(n) -> worst case
 		int rmElement = arr[front];
 		if (isEmpty())
 			System.out.println("Queue is empty.");
