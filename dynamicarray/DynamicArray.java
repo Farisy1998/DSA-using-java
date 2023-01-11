@@ -11,18 +11,16 @@ public class DynamicArray<T> {
 	}
 
 	public DynamicArray(int capacity) throws IllegalAccessException {
-		if (capacity < 0)
-			throw new IllegalAccessException("Illegal capacity: " + capacity);
+		if (capacity <= 0)
+			throw new IllegalArgumentException("Invalid capacity");
+		
 		this.capacity = capacity;
 		array = (T[]) new Object[capacity];
 	}
 
 	public void add(T obj) {
-		if (len + 1 >= capacity)
-			if (capacity == 0)
-				capacity = 1;
-			else
-				capacity *= 2;
+		if(len == capacity)
+			capacity *= 2;
 
 		T[] newArray = (T[]) new Object[capacity];
 
@@ -55,7 +53,7 @@ public class DynamicArray<T> {
 		for (int i = rmIndex; i < len - 1; i++)
 			array[i] = array[i + 1];
 
-		capacity = --len;
+		len--;
 		return array[rmIndex];
 	}
 
@@ -73,6 +71,10 @@ public class DynamicArray<T> {
 		if (index >= len || index < 0)
 			throw new ArrayIndexOutOfBoundsException();
 		array[index] = obj;
+	}
+
+	public int length() {
+		return len;
 	}
 
 	@Override
