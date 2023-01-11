@@ -50,21 +50,14 @@ public class DynamicArray<T> {
 	}
 
 	public T removeAt(int rmIndex) {
-		T rmObj = array[rmIndex];
+		if (rmIndex < 0 || rmIndex >= len)
+			throw new IllegalArgumentException("Invalid index");
+		for (int i = rmIndex; i < len - 1; i++)
+			array[i] = array[i + 1];
 
-		T[] newArray = (T[]) new Object[len - 1];
-
-		for (int i = 0, j = 0; i < len; i++, j++) {
-			if (i == rmIndex) {
-				j--;
-				continue;
-			}
-			newArray[j] = array[i];
-		}
-
-		array = newArray;
-		capacity = --len;
-		return rmObj;
+		len--;
+		capacity = len;
+		return array[rmIndex];
 	}
 
 	public int size() {
