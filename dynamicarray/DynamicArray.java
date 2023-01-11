@@ -55,8 +55,7 @@ public class DynamicArray<T> {
 		for (int i = rmIndex; i < len - 1; i++)
 			array[i] = array[i + 1];
 
-		len--;
-		capacity = len;
+		capacity = --len;
 		return array[rmIndex];
 	}
 
