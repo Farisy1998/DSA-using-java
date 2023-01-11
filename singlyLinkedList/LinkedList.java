@@ -38,7 +38,7 @@ public class LinkedList {
 		}
 	}
 
-	public void setNode(int posData, int data) { // O(n) -> worst case
+	public void insertNodeAt(int posData, int data) { // O(n) -> worst case
 		Node newNode = new Node(data);
 		Node pointer = head;
 

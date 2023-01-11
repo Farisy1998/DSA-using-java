@@ -1,4 +1,4 @@
-package doublylinkedlist;
+package doublyLinkedList;
 
 public class Test {
 
@@ -15,9 +15,9 @@ public class Test {
 		list.traverseBackward();
 		list.addHead(5);
 		list.traverseForward();
-		list.setNode(10, 8);
+		list.inserNodeAt(10, 8);
 		list.traverseForward();
-		list.setNode(8, 7);
+		list.inserNodeAt(8, 7);
 		list.traverseForward();
 		System.out.println(list.size());
 		System.out.println(list.search(70));

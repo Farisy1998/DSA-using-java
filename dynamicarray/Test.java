@@ -1,4 +1,4 @@
-package dynamicarray;
+package dynamicArray;
 
 class Test {
 

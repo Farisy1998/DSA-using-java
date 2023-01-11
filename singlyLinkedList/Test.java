@@ -18,9 +18,9 @@ public class Test {
 		list.addHead(5);
 		list.addTail(60);
 		list.traverse();
-		list.setNode(30, 20);
+		list.insertNodeAt(30, 20);
 		list.traverse();
-		list.setNode(60, 50);
+		list.insertNodeAt(60, 50);
 		list.traverse();
 		System.out.println(list.search(61));
 	}

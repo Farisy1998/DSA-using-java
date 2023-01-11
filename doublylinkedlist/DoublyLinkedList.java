@@ -1,4 +1,4 @@
-package doublylinkedlist;
+package doublyLinkedList;
 
 public class DoublyLinkedList {
 
@@ -31,7 +31,7 @@ public class DoublyLinkedList {
 		}
 	}
 
-	public void setNode(int posData, int data) { // O(n) -> worst case
+	public void inserNodeAt(int posData, int data) { // O(n) -> worst case
 		Node newNode = new Node(data);
 
 		if (posData == head.data)
@@ -125,16 +125,16 @@ public class DoublyLinkedList {
 		System.gc();
 	}
 
-	public void removeNode(int data) { // O(n) -> worst case
+	public void removeNodeAt(int posData) { // O(n) -> worst case
 		Node pointer = head;
 
-		if (data == head.data)
+		if (posData == head.data)
 			removeHead();
-		else if (data == tail.data)
+		else if (posData == tail.data)
 			removeTail();
 		else {
 			while (pointer.next != null) {
-				if (pointer.data == data)
+				if (pointer.data == posData)
 					break;
 				pointer = pointer.next;
 			}
