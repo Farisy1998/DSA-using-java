@@ -2,38 +2,43 @@ package queue;
 
 public class Queue {
 
-	private int[] arr;
+	private int[] queue;
 	private int front = -1;
 	private int rear = -1;
 	private int capacity = 0;
 
-	public Queue() {
-		this(4);
-	}
-
 	public Queue(int capacity) {
+		if (capacity <= 0)
+			throw new IllegalArgumentException("Invalid capacity");
+		
 		this.capacity = capacity;
-		arr = new int[capacity];
+		queue = new int[capacity];
 	}
 
 	public void enqueue(int data) { // O(1)
 		if (isEmpty()) {
-			arr[++front] = data;
-			rear++;
-		} else if (isFull()) {
-			System.out.println("Queue overflow!");
-		} else {
-			arr[++rear] = data;
+			front++;
+			queue[++rear] = data;
+		}
+
+		else if (isFull()) {
+			throw new IllegalAccessError("Queue is full");
+		}
+		
+		else {
+			queue[++rear] = data;
 		}
 	}
 
 	public int dequeue() { // O(n) -> worst case
-		int rmElement = arr[front];
+		int rmElement = queue[front];
+
 		if (isEmpty())
 			System.out.println("Queue is empty.");
+		
 		else {
 			for (int i = 0; i < rear; i++) {
-				arr[i] = arr[i + 1];
+				queue[i] = queue[i + 1];
 			}
 			rear--;
 		}
@@ -41,7 +46,7 @@ public class Queue {
 	}
 
 	public boolean isEmpty() {
-		return rear < 0;
+		return front < 0 && rear < 0;
 	}
 
 	public boolean isFull() {
@@ -49,7 +54,7 @@ public class Queue {
 	}
 
 	public int peek() {
-		return arr[front];
+		return queue[front];
 	}
 
 	@Override
@@ -60,9 +65,9 @@ public class Queue {
 			StringBuilder builder = new StringBuilder(rear);
 
 			for (int i = 0; i < rear; i++)
-				builder.append(arr[i] + " | ");
+				builder.append(queue[i] + " | ");
 
-			return builder.append(arr[rear]).toString();
+			return builder.append(queue[rear]).toString();
 		}
 	}
 }

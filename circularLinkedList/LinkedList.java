@@ -125,7 +125,7 @@ public class LinkedList {
             removeHead();
             return true;
         }
-        
+
         if (position == tail.data) {
             removeTail();
             return true;
@@ -144,8 +144,28 @@ public class LinkedList {
             pointer.next = pointer.next.next;
             return true;
         }
+
+    }
+
+    public boolean search(int data) {
+        if (isEmpty())
+            throw new Error("Linked list is empty");
+
+        else if(data == tail.data)
+            return true;
         
-        
+        else {
+            Node pointer = head;
+
+            while (pointer.next != head) {
+                if (pointer.data == data)
+                    return true;
+
+                pointer = pointer.next;
+            }
+            
+            throw new Error("Data doesn't exist");
+        }
     }
 
     public boolean isEmpty() {

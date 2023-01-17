@@ -7,6 +7,7 @@ public class Main {
         list.addTail(30);
         list.addTail(40);
         list.addTail(50);
+        System.out.println(list.search(5));
         list.removeNodeAt(30);
         list.insertNodeAt(40, 30);
         System.out.println(list.traverse());
