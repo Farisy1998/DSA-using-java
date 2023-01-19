@@ -2,14 +2,14 @@ package bubbleSort;
 
 public class Main {
     public static void main(String[] args) {
-        Array numbers = new Array(5);
-        numbers.add(5);
-        numbers.add(2);
-        numbers.add(1);
-        numbers.add(4);
-        numbers.add(3);
-        System.out.println(numbers.toString());
-        numbers.sort();
-        System.out.println(numbers.toString());
+        int[] numbers = { 5, 2, 1, 4, 3 };
+        
+        for (int number : numbers)
+            System.out.print(number + " ");
+        System.out.println();
+
+        for(int number: Sort.sort(numbers))
+            System.out.print(number + " ");
+        System.out.println();
     }
 }
