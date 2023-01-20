@@ -1,4 +1,4 @@
-package stack;
+package stack_arrayImpl;
 
 public class Stack {
 
