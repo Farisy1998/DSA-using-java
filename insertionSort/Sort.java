@@ -10,8 +10,6 @@ public class Sort{
     public static int[] sort(int[] numbers) {
         
         // Insertion sort algorithm
-
-        // here, 'i' is the pivot point
         for (int i = 1; i < numbers.length; i++) {
             for (int j = i; j > 0; j--) {
                 if (!(numbers[j - 1] < numbers[j])) {
